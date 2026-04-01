@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="mb-3">Get Advice From Our Experts</h2>
+
+    <ul class="list-unstyled">
+    <li><strong>Company:</strong> {{ site_name|default:"—" }}</li>
+    <li><strong>Email:</strong> {{ support_email|default:"Not provided" }}</li>
+    <li><strong>Phone:</strong> {{ contact_number|default:"Not provided" }}</li>
+    <li><strong>Address:</strong> {{ address|default:"Not provided" }}</li>
+  </ul>
+
+  <p>
+    <strong>Support status:</strong>
+    {{ support_enabled|yesno:"Available,Unavailable" }}
+  </p>
+{% endblock %}

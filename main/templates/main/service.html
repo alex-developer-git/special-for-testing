@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mb-3">Our Services</h3>
+
+<form method="get" class="mb-3">
+  <select name="category">
+    <option value="">All</option>
+    {% for cat in categories %}
+      <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>
+        {{ cat }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+<p>
+  We provide {{ services|length }} service{{ services|length|pluralize }}.
+</p>
+
+<h4>Key services</h4>
+<ul>
+  {% for s in services|slice:":5" %}
+    <li><strong>{{ s.name }}</strong> — {{ s.category }}</li>
+  {% endfor %}
+</ul>
+
+{% if services|length > 5 %}
+  <h5>More</h5>
+  <ul>
+    {% for s in services|slice:"5:" %}
+      <li><strong>{{ s.name }}</strong> — {{ s.category }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}
